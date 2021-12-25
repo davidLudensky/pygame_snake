@@ -1,5 +1,4 @@
 from random import randint
-from abc import ABC
 
 INIT_LENGTH = 9
 INIT_LIVES = 3
@@ -7,7 +6,7 @@ INIT_DIRECTION = 'right->right'
 BLOCK_SIZE = []
 
 
-class BoardPart(ABC):
+class BoardPart:
     def __init__(self, surface, grid_location):
         self._surface = surface
         self._rect = self._surface.get_rect()

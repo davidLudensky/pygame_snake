@@ -1,3 +1,8 @@
+/venv/
+/.idea/
+/__pycache__/
+/images/hodaya/128/
+/images/hodaya/64/
 /images/snake/snake-graphics (4).png
 /images/snake/apple.jpg
 /images/snake/snake-body-horizontal.png
@@ -15,9 +20,4 @@
 /images/snake/snake-head-up.png
 /images/snake.ico
 /images/snake-graphics.png
-/images/hodaya/128/
-/images/hodaya/64/
 /images/hodaya/padam-regular.jpeg
-/venv/
-/.idea/
-/__pycache__/
