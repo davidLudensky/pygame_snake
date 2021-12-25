@@ -4,10 +4,10 @@ from random import randint
 
 import resources
 import board_parts
-from board_parts import SnakePart, Snake, Apple
+from board_parts import BoardPart, SnakePart, Snake, Apple
 
 
-def SNAKE_GAME_set_icon(image_path):
+def SNAKE_GAME_set_icon(image_path: str):
     """
     This function sets the icon of the game
     :param image_path: the path to the image of the icon (must be 32 X 32)
@@ -21,7 +21,7 @@ class Game(object):
     # this value determines how many blocks should spread over the screen (width, height)
     blocks_amount = (40, 20)
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         """
         Initialize the parameters of the game
         :param name: window name
@@ -93,11 +93,12 @@ class Game(object):
         :return: snake and apple
         """
         for name in resources.IMAGES_DICT:
-            self.surfaces[name] = pygame.image.load(resources.IMAGES_DICT[name])
+
+            self.surfaces[name] = pygame.image.load(resources.IMAGES_DICT[name]).get_rect()
         board_parts.BLOCK_SIZE = self.surfaces['apple'].get_size()
         snake = Snake(self.surfaces['head right'])
         snake.create_body(self.surfaces['body horizontal'], self.surfaces['tail right'])
-        apple = Apple(body_part=self.surfaces['apple'], screen_size=self.blocks_amount)
+        apple = Apple(surface=self.surfaces['apple'], screen_size=self.blocks_amount)
 
         return snake, apple
 
@@ -114,7 +115,7 @@ class Game(object):
 
         pygame.display.flip()
 
-    def move_snake_body(self, head_next_location):
+    def move_snake_body(self, head_next_location: list) -> bool:
         """
         move the snake body from its current location to the next location
         :param head_next_location: the next location of the head
@@ -140,7 +141,7 @@ class Game(object):
             self.draw(snake_part)
         return False
 
-    def move_snake_head(self, head):
+    def move_snake_head(self, head: SnakePart):
         """
         Move the snake's head
         :param head: the snake's head
@@ -164,10 +165,10 @@ class Game(object):
         :return: None
         """
         location = list(self.snake.get_snake_part_by_index(-1).get_grid_location())
-        new_snake_part = SnakePart(body_part=self.surfaces['body horizontal'], grid_location=location)
+        new_snake_part = SnakePart(surface=self.surfaces['body horizontal'], grid_location=location)
         self.snake.add_snake_part(new_snake_part)
 
-    def change_head_direction(self, head):
+    def change_head_direction(self, head: SnakePart):
         """
         Change the head's direction according to the next move
         :param head: the snake's head
@@ -178,7 +179,7 @@ class Game(object):
         new_surface = self.surfaces[new_surface_name]
         head.set_surface(new_surface)
 
-    def draw(self, board_part):
+    def draw(self, board_part: BoardPart):
         """
         Draw a board part on the screen
         :param board_part: board part (apple or snake part)
@@ -186,7 +187,7 @@ class Game(object):
         """
         self.screen.blit(board_part.get_surface(), board_part.get_rect())
 
-    def check_border_crash(self, head_next_location):
+    def check_border_crash(self, head_next_location: list) -> bool:
         """
         Check if the head of the snake is about to crash any border
         :param head_next_location: the head's next location
