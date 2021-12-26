@@ -94,7 +94,7 @@ class Game(object):
         """
         for name in resources.IMAGES_DICT:
 
-            self.surfaces[name] = pygame.image.load(resources.IMAGES_DICT[name]).get_rect()
+            self.surfaces[name] = pygame.image.load(resources.IMAGES_DICT[name])
         board_parts.BLOCK_SIZE = self.surfaces['apple'].get_size()
         snake = Snake(self.surfaces['head right'])
         snake.create_body(self.surfaces['body horizontal'], self.surfaces['tail right'])

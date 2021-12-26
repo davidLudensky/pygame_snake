@@ -2,7 +2,7 @@ import pygame
 
 BG_IMAGE = 'images/hodaya/padam.jpeg'
 
-ICON_PATH = "images/snake-icon-32x32.png"
+ICON_PATH = "images/snake/snake-icon-32x32.png"
 
 EASY = 2
 MEDIUM = 4
